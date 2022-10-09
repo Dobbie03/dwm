@@ -71,6 +71,9 @@ static const int statmonval = 0;
 
 /* tagging */
 static const char *tags[] = { "", "", "", "", "", "", "", "", "", "" };
+/*static const char *tags[] = { "", "", "", "", "", "", "", "", "", "" };*/
+/*static const char *tags[] = { "•", "•", "•", "•", "•", "•", "•", "•", "•", "•" };*/
+/*static const char *tags[] = { "[web]", "[term]", "[torr]", "[mpd]", "[file]", "[vid]", "[edit]", "[chat]", "[tag]", "[steam]" };*/
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -89,7 +92,7 @@ static const Rule rules[] = {
   { "Nicotine",						NULL,      NULL,        NULL,       1 << 2, 1,         	0,           0,            0 },
   { "Thunar",		    			NULL,      NULL,        NULL,       1 << 4, 1,         	0,           0,            1 },
   { "Gpicview",		    			NULL,      NULL,        NULL,       1 << 4, 1,         	0,           0,            1 },
-  { "Sxiv",		    				NULL,      NULL,        NULL,       0, 		1,         	1,           1,            1 },
+  { "Sxiv",		    				NULL,      NULL,        NULL,       1 << 4, 1,         	1,           1,            1 },
   { "File-roller",    				NULL,      NULL,        NULL,       1 << 4, 1,         	1,           1,            1 },
   { "mpv",          				NULL,      NULL,        NULL,       1,      1,         	1,           1,            1 },
   { "Subl",		    				NULL,      NULL,        NULL,       1 << 6, 1,         	0,           0,            1 },
@@ -115,8 +118,8 @@ static const Rule rules[] = {
   { "st",	            		 	NULL,      NULL,        NULL,       1 << 1,	0,     	 	1,           1,            0 },
   { "nvim",                     	NULL,      NULL,        NULL,       1 << 6, 1,          0,           0,            1 },
   { "firefox",	   "GtkFileChooserDialog",    "Save File",  NULL,		0,	 	0,          1,           1,		       0 },
-  { "firefox",	 NULL,      NULL,  		"About Mozilla Firefox",		0,	 	0,          1,           1,		       0 },
-  { "firefox",                   NULL, "Toolkit", "Picture-in-Picture", 0,   	1,          0,           1,		       0 },
+  { "firefox",                   	NULL, "Toolkit", "Picture-in-Picture", 0,   1,          0,           1,		       0 },
+  { "firefox",                   	NULL, 	NULL, "About Mozilla Firefox", 0,   1,          0,           1,		       0 },
 };
 
 /* layout(s) */
@@ -133,13 +136,12 @@ static const int layoutaxis[] = {
 };
 
 static const Layout layouts[] = {
-	/* symbol	arrange function */
-	{ "󰕴", dwindle }, /* first entry is default */
+	{ "󰕴", dwindle },
 	{ "󰕰", tile },
 	{ "󰡃", grid },
 	{ "󰕫", centeredmaster },
 	{ "󰕬", centeredfloatingmaster },
-	{ "󰕯", NULL },    /* no layout function means floating behavior */
+	{ "󰕯", NULL },
 	{ "󰾍", bstack },
 	{ "󱇚", bstackhoriz },
 	{ "󱒈", gaplessgrid },
@@ -165,10 +167,11 @@ static const Layout layouts[] = {
 
 #define APP_BROWSER     "firefox"
 #define APP_BROWSER_    "firefox --private-window"
-#define APP_QUTE        "qutebrowser"
+#define APP_QUTE        "qutebrowser --qt-arg stylesheet ~/.local/share/qutebrowser/fix-tooltips.qss"
 #define APP_SURF        "surf"
 #define APP_FILE        "thunar"
-#define APP_EDITOR      "emacs"
+#define APP_EDITOR      "easytag"
+#define APP_MAGNET      "transmission-gtk"
 #define APP_EDIT        "subl"
 #define APP_CODE        "subl"
 #define APP_NVIM        "st -c nvim -e nvim"
@@ -197,7 +200,6 @@ static const Layout layouts[] = {
 #define APP_SCROT       "/usr/bin/scr"
 #define APP_SCROT_      "teiler"
 #define APP_LOCK        "slock"
-#define APP_BOOKMARK    "buku-dmenu"
 #define APP_LIGHT       "/usr/bin/switch light"
 #define APP_DARK        "/usr/bin/switch dark"
 
@@ -212,20 +214,11 @@ static const char *scratchpadcmd[] = { "alacritty", "-t", scratchpadname, "-o", 
 #include <X11/XF86keysym.h>
 static Key keys[] = {
 	/* modifier                     key        function             argument */
-	{ MODKEY,		            	XK_F2,     spawn,               SHCMD(APP_BROWSER) },
-  	{ MODKEY,                       XK_F3,     spawn,               SHCMD(APP_SURF) },
-  	{ MODKEY,                       XK_F4,     spawn,               SHCMD(APP_EDIT) },
-  	{ MODKEY,                       XK_m,      spawn,               SHCMD(APP_MUSICA) },
-  	{ ControlMask,                  XK_grave,  spawn,               SHCMD(APP_DUNSTHIST) },
-  	{ ControlMask,                  XK_space,  spawn,               SHCMD(APP_DUNSTCLOSE) },
-  	{ MODKEY,                       XK_F1,     mpdchange,           {.i = -1} }, // PREVIOUS SONG
-	{ MODKEY|ShiftMask,             XK_F1,     mpdchange,           {.i = +1} }, // NEXT SONG
-	{ MODKEY,                       XK_Escape, mpdcontrol,          {0} },		 // TOGGLE PLAY/PAUSE
 	{ MODKEY,                       XK_space,  spawn,               {.v = dmenucmd } },
 	{ MODKEY,			            XK_t, 	   spawn,               {.v = termcmd } },
 	{ MODKEY,                       XK_grave,  togglescratch,  	    {.v = scratchpadcmd } },
-	{ MODKEY|ShiftMask,             XK_b,      togglebar,           {0} },
-  	{ MODKEY,                       XK_b,      spawn,               SHCMD(APP_BOOKMARK) },
+	{ MODKEY,                     	XK_s,	   togglescratch,  	    {.v = scratchpadcmd } },
+	{ MODKEY,			            XK_b,      togglebar,           {0} },
 	{ MODKEY,                       XK_j,      focusstack,          {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,          {.i = -1 } },
 	{ MODKEY|Mod4Mask,              XK_j,      rotatestack,         {.i = +1 } },
@@ -270,7 +263,7 @@ static Key keys[] = {
 	{ MODKEY|Mod4Mask|ControlMask,  XK_w,      setflexlayout,       {.i = 293 } }, // centered master
 	{ MODKEY|ControlMask,           XK_e,      setflexlayout,       {.i = 273 } }, // bstackhoriz layout
 	{ MODKEY|ShiftMask,             XK_r,      setflexlayout,       {.i = 272 } }, // bstack layout
-	{ MODKEY|ControlMask,           XK_t,      setflexlayout,       {.i = 261 } }, // default tile layout
+	{ MODKEY|ShiftMask|ControlMask, XK_t,      setflexlayout,       {.i = 261 } }, // default tile layout
 	{ MODKEY|ShiftMask,             XK_g,      setflexlayout,       {.i = 263 } }, // tile + grid layout
 	{ MODKEY|ShiftMask|ControlMask, XK_w,      setflexlayout,       {.i =   7 } }, // grid
 	{ MODKEY|Mod4Mask|ControlMask,  XK_e,      setflexlayout,       {.i = 262 } }, // deck layout
@@ -307,6 +300,9 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,           XK_Tab,     rotatelayoutaxis,   {.i = 1} },    /* flextile, 1 = master axis */
 	{ MODKEY|ControlMask|ShiftMask, XK_Tab,     rotatelayoutaxis,   {.i = 2} },    /* flextile, 2 = stack axis */
 	{ MODKEY|ControlMask,           XK_Return,  mirrorlayout,       {0} },         /* flextile, flip master and stack areas */
+	{ MODKEY,                       XK_m,      spawn,               SHCMD(APP_MUSICA) },
+  	{ ControlMask,                  XK_grave,  spawn,               SHCMD(APP_DUNSTHIST) },
+  	{ ControlMask,                  XK_space,  spawn,               SHCMD(APP_DUNSTCLOSE) },
 	{ MODKEY,						XK_l,       spawn,		    	SHCMD(APP_LOCK) },
 	{ 0,							XK_Print,   spawn,		    	SHCMD(APP_SCROT) },
 	{ ShiftMask,					XK_Print,   spawn,		    	SHCMD(APP_SCROT_) },
@@ -329,6 +325,11 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_p,	    spawn,              SHCMD(APP_CLIP)},
 	{ MODKEY,						XK_f,	    spawn,				SHCMD(APP_FILE) },
 	{ MODKEY,                       XK_e,       spawn,              SHCMD(APP_EDIT)  },
+	{ MODKEY|ShiftMask,             XK_e,       spawn,              SHCMD(APP_EDITOR)  },
+	{ MODKEY|ShiftMask,             XK_t,       spawn,              SHCMD(APP_MAGNET)  },
+	{ MODKEY,                       XK_F1,     mpdchange,           {.i = -1} }, // PREVIOUS SONG
+	{ MODKEY|ShiftMask,             XK_F1,     mpdchange,           {.i = +1} }, // NEXT SONG
+	{ MODKEY,                       XK_Escape, mpdcontrol,          {0} },		 // TOGGLE PLAY/PAUSE
   	{ MODKEY,                       XK_a,      					    toggleopacity,  {0} },
 };
 

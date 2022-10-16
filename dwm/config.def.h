@@ -85,38 +85,39 @@ static const Rule rules[] = {
   { "qutebrowser",    				NULL,      NULL,        NULL,       1,	    1,         	0,           0,            0 },
   { "firefox",        				NULL,      NULL,        NULL,       1,	    1,         	0,           0,            0 },
   { "Surf",           				NULL,      NULL,        NULL,       1,	    1,         	0,           0,            0 },
-  { "ncmpcpp",   					NULL,	   NULL,        NULL,       1 << 3, 1,         	1,			 0,	           1 },
+  { "ncmpcpp",   					NULL,	   NULL,        NULL,       1 << 3, 1,         	1,			 0,	           0 },
   { "URxvt",          				NULL,      NULL,        NULL,       1 << 1, 1,         	0,           0,            0 },
   { "Transmission-gtk",				NULL,      NULL,        NULL,       1 << 2, 1,         	0,           0,            0 },
   { "SoulseekQt",					NULL,      NULL,        NULL,       1 << 2, 1,         	0,           0,            0 },
   { "Nicotine",						NULL,      NULL,        NULL,       1 << 2, 1,         	0,           0,            0 },
-  { "Thunar",		    			NULL,      NULL,        NULL,       1 << 4, 1,         	0,           0,            1 },
-  { "Gpicview",		    			NULL,      NULL,        NULL,       1 << 4, 1,         	0,           0,            1 },
-  { "Sxiv",		    				NULL,      NULL,        NULL,       1 << 4, 1,         	1,           1,            1 },
-  { "File-roller",    				NULL,      NULL,        NULL,       1 << 4, 1,         	1,           1,            1 },
-  { "mpv",          				NULL,      NULL,        NULL,       1,      1,         	1,           1,            1 },
-  { "Subl",		    				NULL,      NULL,        NULL,       1 << 6, 1,         	0,           0,            1 },
-  { "Emacs",	    				NULL,      NULL,        NULL,       1 << 6, 1,         	0,           0,            1 },
-  { "Code",		    				NULL,      NULL,        NULL,       1 << 6, 1,         	0,           0,            1 },
+  { "Thunar",		    			NULL,      NULL,        NULL,       1 << 4, 1,         	0,           0,            0 },
+  { "Gpicview",		    			NULL,      NULL,        NULL,       1 << 4, 1,         	0,           0,            0 },
+  { "Sxiv",		    				NULL,      NULL,        NULL,       1 << 4, 1,         	1,           1,            0 },
+  { "File-roller",    				NULL,      NULL,        NULL,       1 << 4, 1,         	1,           1,            0 },
+  { "mpv",          				NULL,      NULL,        NULL,       1,      1,         	1,           1,            0 },
+  { "Subl",		    				NULL,      NULL,        NULL,       1 << 6, 1,         	0,           0,            0 },
+  { "Emacs",	    				NULL,      NULL,        NULL,       1 << 6, 1,         	0,           0,            0 },
+  { "Code",		    				NULL,      NULL,        NULL,       1 << 6, 1,         	0,           0,            0 },
   { "steam",          				NULL,      NULL,        NULL,       1 << 7, 1,         	0,           0,            0 },
   { "Slack",          				NULL,      NULL,        NULL,       1 << 7, 1,         	0,           0,            0 },
-  { "Easytag",	    				NULL,      NULL,        NULL,       1 << 8, 1,         	1,           0,            1 },
-  { "Xfce4-taskmanager",			NULL,      NULL,        NULL,       1 << 9, 1,         	1,           0,            1 },
-  { "Nitrogen",						NULL,      NULL,        NULL,       1 << 9, 1,         	1,           1,            1 },
-  { "Xfce4-appearance-settings",	NULL,      NULL, 	    NULL,       1 << 9, 1,         	1,    		 1,            1 },
-  { "Xfce4-mouse-settings", 		NULL, 	   NULL, 	    NULL,       1 << 9, 1,         	1,    		 1,            1 },
-  { "Gpick", 						NULL, 	   NULL, 	    NULL,       0,    	1,         	1,    		 1,            1 },
-  { "MuPDF", 						NULL, 	   NULL, 	    NULL,       0,    	1,         	1,    		 1,            1 },
+  { "Easytag",	    				NULL,      NULL,        NULL,       1 << 8, 1,         	1,           0,            0 },
+  { "Xfce4-taskmanager",			NULL,      NULL,        NULL,       1 << 9, 1,         	1,           0,            0 },
+  { "Nitrogen",						NULL,      NULL,        NULL,       1 << 9, 1,         	1,           1,            0 },
+  { "Xfce4-appearance-settings",	NULL,      NULL, 	    NULL,       1 << 9, 1,         	1,    		 1,            0 },
+  { "Xfce4-mouse-settings", 		NULL, 	   NULL, 	    NULL,       1 << 9, 1,         	1,    		 1,            0 },
+  { "Gpick", 						NULL, 	   NULL, 	    NULL,       0,    	1,         	1,    		 1,            0 },
+  { "MuPDF", 						NULL, 	   NULL, 	    NULL,       0,    	1,         	1,    		 1,            0 },
   { "Lxappearance",   				NULL, 	   NULL, 	    NULL,       1 << 9, 1,         	1,    		 1,            0 },
   { "Blueman-manager", 				NULL, 	   NULL, 	    NULL,       1 << 9, 1,         	1,    		 1,            0 },
   { "Pavucontrol",              	NULL,      NULL,        NULL,	    1 << 9, 1,          1,   		 1,            0 },
   { "Piper", 						NULL, 	   NULL, 	    NULL,       1 << 9, 1,         	1,    		 1,            0 },
-  { "Gucharmap", 					NULL, 	   NULL, 	    NULL,       1 << 6, 1,         	1,    		 1,            1 },
+  { "Gucharmap", 					NULL, 	   NULL, 	    NULL,       1 << 6, 1,         	1,    		 1,            0 },
   { "Gimp", 						NULL, 	   NULL, 	    NULL,       1 << 9, 1,         	1,    		 0,            0 },
   { "Alacritty",           			NULL,      NULL,        NULL,       1 << 1, 1,         	0,           0,            0 },
   { "kitty",            			NULL,      NULL,        NULL,       1 << 1, 1,         	0,           0,            0 },
-  { "st",	            		 	NULL,      NULL,        NULL,       1 << 1,	0,     	 	1,           1,            0 },
-  { "nvim",                     	NULL,      NULL,        NULL,       1 << 6, 1,          0,           0,            1 },
+  { "st",	            		 	NULL,      NULL,        NULL,       1 << 1,	1,     	 	1,           0,            0 },
+  { "St",	            		 	NULL,      NULL,        NULL,       1 << 1,	1,     	 	1,           0,            0 },
+  { "nvim",                     	NULL,      NULL,        NULL,       1 << 6, 1,          0,           0,            0 },
   { "firefox",	   "GtkFileChooserDialog",    "Save File",  NULL,		0,	 	0,          1,           1,		       0 },
   { "firefox",                   	NULL, "Toolkit", "Picture-in-Picture", 0,   1,          0,           1,		       0 },
   { "firefox",                   	NULL, 	NULL, "About Mozilla Firefox", 0,   1,          0,           1,		       0 },
@@ -206,9 +207,10 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2]            = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[]      = {"dmenu_run_history", NULL};
-static const char *termcmd[]       = { "alacritty", NULL };
+static const char *termcmd[]       = { "st", NULL };
 static const char scratchpadname[] = "scratchpad";
-static const char *scratchpadcmd[] = { "alacritty", "-t", scratchpadname, "-o", "window.dimensions.columns=130", "-o", "window.dimensions.lines=30", NULL };
+static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
+/*static const char *scratchpadcmd[] = { "alacritty", "-t", scratchpadname, "-o", "window.dimensions.columns=130", "-o", "window.dimensions.lines=30", NULL };*/
 
 #include "mpdcontrol.c"
 #include <X11/XF86keysym.h>
@@ -300,7 +302,8 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,           XK_Tab,     rotatelayoutaxis,   {.i = 1} },    /* flextile, 1 = master axis */
 	{ MODKEY|ControlMask|ShiftMask, XK_Tab,     rotatelayoutaxis,   {.i = 2} },    /* flextile, 2 = stack axis */
 	{ MODKEY|ControlMask,           XK_Return,  mirrorlayout,       {0} },         /* flextile, flip master and stack areas */
-	{ MODKEY,                       XK_m,      spawn,               SHCMD(APP_MUSICA) },
+	{ MODKEY,                       XK_m,      spawn,               SHCMD(APP_MUSIC) },
+	{ MODKEY|ShiftMask,             XK_m,      spawn,               SHCMD(APP_MUSICA) },
   	{ ControlMask,                  XK_grave,  spawn,               SHCMD(APP_DUNSTHIST) },
   	{ ControlMask,                  XK_space,  spawn,               SHCMD(APP_DUNSTCLOSE) },
 	{ MODKEY,						XK_l,       spawn,		    	SHCMD(APP_LOCK) },

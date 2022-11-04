@@ -107,6 +107,7 @@ static const Rule rules[] = {
   { "Xfce4-mouse-settings", 		NULL, 	   NULL, 	    NULL,       1 << 9, 1,         	1,    		 1,            0 },
   { "Gpick", 						NULL, 	   NULL, 	    NULL,       0,    	1,         	1,    		 1,            0 },
   { "MuPDF", 						NULL, 	   NULL, 	    NULL,       0,    	1,         	1,    		 1,            0 },
+  { "Xfce-polkit",					NULL, 	   NULL, 	    NULL,       0,    	1,         	1,    		 1,            0 },
   { "Lxappearance",   				NULL, 	   NULL, 	    NULL,       1 << 9, 1,         	1,    		 1,            0 },
   { "Blueman-manager", 				NULL, 	   NULL, 	    NULL,       1 << 9, 1,         	1,    		 1,            0 },
   { "Pavucontrol",              	NULL,      NULL,        NULL,	    1 << 9, 1,          1,   		 1,            0 },
@@ -174,7 +175,6 @@ static const Layout layouts[] = {
 #define APP_EDITOR      "easytag"
 #define APP_MAGNET      "transmission-gtk"
 #define APP_EDIT        "subl"
-#define APP_CODE        "subl"
 #define APP_NVIM        "st -c nvim -e nvim"
 #define APP_NANO        "alacritty --class nano,nano -e nano"
 #define APP_NEOVIM      "alacritty --class nvim,nvim -e nvim"
@@ -188,9 +188,8 @@ static const Layout layouts[] = {
 /*#define APP_CLIP        "/usr/bin/clipit.sh"*/
 /*#define APP_EXIT        "/usr/bin/logout.sh"*/
 #define APP_EXIT        "/usr/bin/dmenu_logout"
-#define APP_DMENU       "/usr/bin/dmenubot.sh"
-#define APP_VOLU        "/home/dobbie/.bin/volume up"
-#define APP_VOLD        "/home/dobbie/.bin/volume down"
+/*#define APP_VOLU        "/home/dobbie/.bin/volume up"
+#define APP_VOLD        "/home/dobbie/.bin/volume down"*/
 #define APP_MUTE        "amixer -q set Master toggle"
 #define APP_MPDTOG      "mpc toggle"
 #define APP_MPDSTOP     "mpc stop"
@@ -198,19 +197,18 @@ static const Layout layouts[] = {
 #define APP_MPDPREV     "mpc prev"
 #define APP_MPDREW      "mpc seek -10"
 #define APP_MPDFAST     "mpc seek +10"
-#define APP_SCROT       "/usr/bin/scr"
-#define APP_SCROT_      "teiler"
+#define APP_SCROT       "/home/dobbie/.bin/scr"
 #define APP_LOCK        "slock"
-#define APP_LIGHT       "/usr/bin/switch light"
-#define APP_DARK        "/usr/bin/switch dark"
 
 /* commands */
 static char dmenumon[2]            = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[]      = {"dmenu_run_history", NULL};
-static const char *termcmd[]       = { "st", NULL };
+static const char *termcmd[]       = { "alacritty", NULL };
 static const char scratchpadname[] = "scratchpad";
-static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
-/*static const char *scratchpadcmd[] = { "alacritty", "-t", scratchpadname, "-o", "window.dimensions.columns=130", "-o", "window.dimensions.lines=30", NULL };*/
+/*static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };*/
+static const char *scratchpadcmd[] = { "alacritty", "-t", scratchpadname, "-o", "window.dimensions.columns=130", "-o", "window.dimensions.lines=30", NULL };
+static const char *upvol[]   = { "pamixer", "--increase", "1", NULL };
+static const char *downvol[] = { "pamixer", "--decrease", "1", NULL };
 
 #include "mpdcontrol.c"
 #include <X11/XF86keysym.h>
@@ -302,15 +300,16 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,           XK_Tab,     rotatelayoutaxis,   {.i = 1} },    /* flextile, 1 = master axis */
 	{ MODKEY|ControlMask|ShiftMask, XK_Tab,     rotatelayoutaxis,   {.i = 2} },    /* flextile, 2 = stack axis */
 	{ MODKEY|ControlMask,           XK_Return,  mirrorlayout,       {0} },         /* flextile, flip master and stack areas */
-	{ MODKEY,                       XK_m,      spawn,               SHCMD(APP_MUSIC) },
-	{ MODKEY|ShiftMask,             XK_m,      spawn,               SHCMD(APP_MUSICA) },
-  	{ ControlMask,                  XK_grave,  spawn,               SHCMD(APP_DUNSTHIST) },
-  	{ ControlMask,                  XK_space,  spawn,               SHCMD(APP_DUNSTCLOSE) },
+	{ MODKEY,                       XK_m,      	spawn,              SHCMD(APP_MUSICA) },
+	{ MODKEY|ShiftMask,             XK_m,      	spawn,              SHCMD(APP_MUSICVIS) },
+  	{ ControlMask,                  XK_grave,  	spawn,              SHCMD(APP_DUNSTHIST) },
+  	{ ControlMask,                  XK_space,  	spawn,              SHCMD(APP_DUNSTCLOSE) },
 	{ MODKEY,						XK_l,       spawn,		    	SHCMD(APP_LOCK) },
 	{ 0,							XK_Print,   spawn,		    	SHCMD(APP_SCROT) },
-	{ ShiftMask,					XK_Print,   spawn,		    	SHCMD(APP_SCROT_) },
-	{ MODKEY,                       XK_minus,   spawn,              SHCMD(APP_VOLD) },
-	{ MODKEY,                       XK_equal,   spawn,              SHCMD(APP_VOLU) },
+	/*{ MODKEY,                       XK_minus,   spawn,              SHCMD(APP_VOLD) },
+	{ MODKEY,                       XK_equal,   spawn,              SHCMD(APP_VOLU) },*/
+	{ MODKEY,                       XK_equal,   spawn,          	{.v = upvol   } },
+	{ MODKEY,                       XK_minus,   spawn,          	{.v = downvol } },
 	{ MODKEY|ShiftMask,             XK_minus,   spawn,              SHCMD(APP_MUTE) },
 	/*{ 0, XF86XK_AudioMute,                      spawn,              SHCMD(APP_MUTE) },
 	{ 0, XF86XK_AudioRaiseVolume,               spawn,              SHCMD(APP_VOLUP) },

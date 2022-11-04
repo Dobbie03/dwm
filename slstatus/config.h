@@ -65,7 +65,7 @@ static const struct arg args[] = {
 	/* function format          		argument */
 	{ cpu_perc, "   %s%%    ", 		NULL },
 	{ ram_perc, "   %s%%    ", 			NULL },
-	{ run_command, "   %4s    ", 		"amixer sget Master | awk -F\"[][]\" '/%/ { print $2 }' | head -n1" },
+	{ run_command, "   %4s%%    ", 		"pamixer --get-volume" },
 /*	{ wifi_essid, "   %s    ", 		"wlo1"},*/
 	{ netspeed_tx, "   %s    ",		"enp34s0" },
 	{ netspeed_rx, "   %s    ",		"enp34s0" },

@@ -207,9 +207,9 @@ static const char *termcmd[]       = { "alacritty", NULL };
 static const char scratchpadname[] = "scratchpad";
 /*static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };*/
 static const char *scratchpadcmd[] = { "alacritty", "-t", scratchpadname, "-o", "window.dimensions.columns=130", "-o", "window.dimensions.lines=30", NULL };
-static const char *upvol[]   = { "pamixer", "--increase", "1", NULL };
-static const char *downvol[] = { "pamixer", "--decrease", "1", NULL };
-
+static const char *upvol[]   	   = { "pamixer", "--increase", "1", NULL };
+static const char *downvol[] 	   = { "pamixer", "--decrease", "1", NULL };
+	   
 #include "mpdcontrol.c"
 #include <X11/XF86keysym.h>
 static Key keys[] = {

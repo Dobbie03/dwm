@@ -64,20 +64,21 @@ static const char unknown_str[] = "n/a";
 static const struct arg args[] = {
 	/* function format          		argument */
 	{ cpu_perc, "   %s%%    ", 		NULL },
-	{ ram_perc, "   %s%%    ", 			NULL },
-	{ run_command, "   %4s%%    ", 		"pamixer --get-volume" },
+	{ ram_perc, "   %s%%    ", 		NULL },
+	{ run_command, "  %4s%%    ", 	"pamixer --get-volume" },
 /*	{ wifi_essid, "   %s    ", 		"wlo1"},*/
 	{ netspeed_tx, "   %s    ",		"enp34s0" },
 	{ netspeed_rx, "   %s    ",		"enp34s0" },
-	{ disk_perc, "  %s%%    ", "/home" },
-/*	{ disk_perc, "  %s%%", "/home" },
-	{ disk_total, " / %s   ", "/home" },*/ /*use to show total disk space*/
-	{ disk_perc, "  %s%%    ", "/run/media/dobbie/Music/" },
-/*	{ disk_perc, "  %s%%", "/run/media/dobbie/Music/" },
-	{ disk_total, " / %s   ", "/run/media/dobbie/Music/" },*/ /*use to show total disk space*/
+	{ disk_perc, "  %s%%    ",        "/home" },
+/*	{ disk_perc, "  %s%%",            "/home" },
+	{ disk_total, " / %s   ",           "/home" },*/ /*use to show total disk space*/
+	{ disk_perc, "  %s%%    ",        "/run/media/dobbie/Music/" },
+    { disk_perc, "  %s%%    ",        "/run/media/dobbie/Important/" },
+/*	{ disk_perc, "  %s%%",            "/run/media/dobbie/Music/" },
+	{ disk_total, " / %s   ",           "/run/media/dobbie/Music/" },*/ /*use to show total disk space*/
 /*	{ run_command, "   %s    ",	 	"mpc current"		   },*/
 /*	{ run_command, "   %s    ",	 	"mpc -f '%title% by %artist% from %album% (%date%)'"		   },*/
-	{ datetime, "   %s",  		"%A, %b %d, %l:%M %p"},
+	{ datetime, "   %s",  		    "%A, %b %d, %l:%M %p"},
 	/*{ hostname, "  [%s]",           	NULL},*/
 /*	{ username, "   %s",           	NULL},*/
 };

@@ -210,7 +210,6 @@ static const char *scratchpadcmd[] = { "alacritty", "-t", scratchpadname, "-o", 
 static const char *upvol[]   	   = { "pamixer", "--increase", "1", NULL };
 static const char *downvol[] 	   = { "pamixer", "--decrease", "1", NULL };
 	   
-#include "mpdcontrol.c"
 #include <X11/XF86keysym.h>
 static Key keys[] = {
 	/* modifier                     key        function             argument */
@@ -329,9 +328,6 @@ static Key keys[] = {
 	{ MODKEY,                       XK_e,       spawn,              SHCMD(APP_EDIT)  },
 	{ MODKEY|ShiftMask,             XK_e,       spawn,              SHCMD(APP_EDITOR)  },
 	{ MODKEY|ShiftMask,             XK_t,       spawn,              SHCMD(APP_MAGNET)  },
-	{ MODKEY,                       XK_F1,     mpdchange,           {.i = -1} }, // PREVIOUS SONG
-	{ MODKEY|ShiftMask,             XK_F1,     mpdchange,           {.i = +1} }, // NEXT SONG
-	{ MODKEY,                       XK_Escape, mpdcontrol,          {0} },		 // TOGGLE PLAY/PAUSE
   	{ MODKEY,                       XK_a,      					    toggleopacity,  {0} },
 };
 
